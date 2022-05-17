@@ -11,34 +11,32 @@
  * @return {boolean}
  */
 // two pointers
-var hasCycle = function(head) {
-    let slow = head;
-    let fast = head;
-    
-    while(fast !== null && fast.next !== null) {
-        slow = slow.next;
-        fast = fast.next.next;
-        
-        if(slow === fast) return true;
-    }
-    
-    return false;
-};
-
-
-// set
 // var hasCycle = function(head) {
-//     const set = new Set();
-//     let currentNode = head;
+//     let slow = head;
+//     let fast = head;
     
-//     while(currentNode !== null && currentNode.next !== null) {
-//         if(!set.has(currentNode)) {
-//             set.add(currentNode);
-//         } 
-//         else return true;
+//     while(fast !== null && fast.next !== null) {
+//         slow = slow.next;
+//         fast = fast.next.next;
         
-//         currentNode = currentNode.next;
+//         if(slow === fast) return true;
 //     }
     
 //     return false;
 // };
+
+
+//hashmap
+var hasCycle = function(head) {
+    const map = new Map();
+    let currentNode = head;
+    
+    while(currentNode !== null && currentNode.next !== null) {
+        map.set(currentNode, (map.get(currentNode) || 0) + 1);
+        if(map.get(currentNode) > 1) return true;
+        
+        currentNode = currentNode.next;
+    }
+    
+    return false;
+};
