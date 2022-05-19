@@ -14,10 +14,9 @@ var deleteDuplicates = function(head) {
     if(!head.next) return head;
     
     let currentNode = head;
-    let nextNode = head;
+    let nextNode = head.next;
     
     while(currentNode !== null && currentNode.next !== null) {
-        nextNode = currentNode.next;
         if(currentNode.val === nextNode.val) {
             currentNode.next = nextNode.next;
             nextNode.next = null;
@@ -25,6 +24,7 @@ var deleteDuplicates = function(head) {
         else {
           currentNode = currentNode.next;
         }
+        nextNode = currentNode.next;
     }
     
     return head;
