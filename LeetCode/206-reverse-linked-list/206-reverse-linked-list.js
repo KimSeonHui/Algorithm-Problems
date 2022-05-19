@@ -19,10 +19,7 @@ function reverse(prevNode, node) {
     
     let nextNode = node.next;
     node.next = prevNode;
-    prevNode = node;
-    node = nextNode;
-    
-    return reverse(prevNode, node);
+    return reverse(node, nextNode);
 }
 
 
