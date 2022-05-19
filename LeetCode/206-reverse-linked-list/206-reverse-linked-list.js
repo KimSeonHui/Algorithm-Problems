@@ -11,22 +11,18 @@
  */
 //recursion
 var reverseList = function(head) {
-    let currentNode = head;
-    let reverseNode = null;
-    let nextNode = head;
-    
-    while(currentNode !== null) {
-        nextNode = currentNode.next;
-        reverseNode = reverse(reverseNode, currentNode);
-        currentNode = nextNode;
-    }
-    
-    return reverseNode;
+    return reverse(null, head);
 };
 
 function reverse(prevNode, node) {
+    if(node === null) return prevNode;
+    
+    let nextNode = node.next;
     node.next = prevNode;
-    return node;
+    prevNode = node;
+    node = nextNode;
+    
+    return reverse(prevNode, node);
 }
 
 
