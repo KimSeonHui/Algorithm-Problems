@@ -2,6 +2,7 @@
 var MyQueue = function() {
     this.front = [];
     this.rear = [];
+    this.size = 0;
 };
 
 /** 
@@ -11,6 +12,7 @@ var MyQueue = function() {
 MyQueue.prototype.push = function(x) {
     if(this.front.length === 0) this.front.push(x);
     else this.rear.push(x);
+    this.size++;
 };
 
 /**
@@ -29,6 +31,8 @@ MyQueue.prototype.pop = function() {
             }
         }
         
+        this.size--;
+        
         return ele;
     }
     else return undefined;
@@ -46,7 +50,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-    return (this.front.length === 0 && this.rear.length === 0);
+    return this.size === 0;
 };
 
 /** 
