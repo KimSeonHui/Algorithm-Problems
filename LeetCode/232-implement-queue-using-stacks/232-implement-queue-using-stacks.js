@@ -44,6 +44,22 @@ MyQueue.prototype.empty = function() {
     return this.size === 0;
 };
 
+
+//다른 사람 풀이
+function MyQueue() {
+  const stack1 = [], stack2 = [];
+  return {
+    push: (val) => stack1.push(val),
+    pop: () => {
+      if (!stack2.length) {
+        while (stack1.length) stack2.push(stack1.pop())
+      }
+      return stack2.pop()
+    },
+    peek: ()=> stack2.length ? stack2[stack2.length - 1] : stack1[0],
+    empty: ()=> !stack1.length && !stack2.length
+  }
+}
 /** 
  * Your MyQueue object will be instantiated and called as such:
  * var obj = new MyQueue()
