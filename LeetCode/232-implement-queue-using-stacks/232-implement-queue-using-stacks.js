@@ -10,8 +10,7 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-    if(this.front.length === 0) this.front.push(x);
-    else this.rear.push(x);
+    this.rear.push(x);
     this.size++;
 };
 
@@ -19,31 +18,23 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    if(this.front.length > 0 ) {
-        const ele = this.front.pop();
-        
-        if(this.front.length === 0 && this.rear.length > 0) {
-            this.front.push(this.rear[0]);
-            
-            for(let i = 0; i < this.rear.length; i++) {
-                if(i !== this.rear.length - 1) this.rear[i] = this.rear[i+1];
-                else this.rear.pop();
-            }
+    if(this.front.length === 0) {
+        while(this.rear.length > 0) {
+            this.front.push(this.rear.pop());
         }
-        
-        this.size--;
-        
-        return ele;
     }
-    else return undefined;
+
+    this.size--;
+        
+    return this.front.pop();
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-    if(this.front.length > 0) return this.front[0];
-    else return undefined;
+    if(this.front.length > 0) return this.front[this.front.length - 1];
+    else return this.rear[0];
 };
 
 /**
