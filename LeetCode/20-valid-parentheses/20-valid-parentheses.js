@@ -7,9 +7,9 @@ var isValid = function(s) {
     
     const close = [];
     const stack = s.split('');
-    const type = {'(' : 'small', ')' : 'small', 
-                  '{' : 'medium', '}' : 'medium', 
-                  '[' : 'large', ']' :'large'};
+    const type = {'(' : ')',  
+                  '{' : '}', 
+                  '[' : ']'};
     
     while(stack.length > 0) {
         const bracket = stack.pop();
@@ -19,7 +19,7 @@ var isValid = function(s) {
         }
         else {
             const closeBracket = close.pop();
-            if(type[bracket] !== type[closeBracket]) return false;
+            if(type[bracket] !== closeBracket) return false;
         }
     }
     
