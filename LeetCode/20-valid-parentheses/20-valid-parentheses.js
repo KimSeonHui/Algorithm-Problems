@@ -5,23 +5,20 @@
 var isValid = function(s) {
     if(s.length === 1) return false;
     
-    const close = [];
-    const stack = s.split('');
-    const type = {'(' : ')',  
-                  '{' : '}', 
-                  '[' : ']'};
+    const stack = [];
+    const type = {')' : '(',  
+                  '}' : '{', 
+                  ']' : '['};
     
-    while(stack.length > 0) {
-        const bracket = stack.pop();
-        
-        if(bracket === ')' || bracket === ']' || bracket === '}' ) {
-            close.push(bracket);
+    for(let ch of s) {        
+        if(type[ch]) {
+            if(stack.length > 0 && type[ch] === stack[stack.length - 1]) stack.pop();
+            else return false;
         }
         else {
-            const closeBracket = close.pop();
-            if(type[bracket] !== closeBracket) return false;
+            stack.push(ch);
         }
     }
     
-    return close.length > 0 ? false : true;
+    return stack.length > 0 ? false : true;
 };
