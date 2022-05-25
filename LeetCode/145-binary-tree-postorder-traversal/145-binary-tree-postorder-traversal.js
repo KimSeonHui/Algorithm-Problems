@@ -23,3 +23,17 @@ function post(root, order) {
     
     return order;
 }
+
+// 다른 사람 풀이
+var postorderTraversal = function(root) {
+    if (!root) return [];
+    let ans = [];
+    let traverse = node => {
+        if (node.left) traverse(node.left)
+        if (node.right) traverse(node.right)
+        ans.push(node.val)
+    }
+
+    traverse(root);
+    return ans;
+};
