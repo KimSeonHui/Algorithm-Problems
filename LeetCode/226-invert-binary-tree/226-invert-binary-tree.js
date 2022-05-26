@@ -14,19 +14,19 @@
 var invertTree = function(root) {
     if(!root) return root;
     
+    const invert = (root) => {
+        const temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        if(root.left) invert(root.left);
+        if(root.right) invert(root.right);
+
+        return root;
+    }
     return invert(root);  
 };
 
-function invert(root) {
-    const temp = root.left;
-    root.left = root.right;
-    root.right = temp;
- 
-    if(root.left) invert(root.left);
-    if(root.right) invert(root.right);
-    
-    return root;
-}
 
 
 //BFS
