@@ -12,22 +12,19 @@
  * @return {boolean}
  */
 var hasPathSum = function(root, targetSum) {
-    let hasPath = false;
+    if(root === null) return false;   
     
     const dfs = (root, sum) => {
-        if(!root) return 0;        
+        if(root === null) return false;
+     
+        if(!root.left && !root.right) {
+            return targetSum === sum + root.val;
+        }
         
         sum += root.val;
         
-        if(sum === targetSum && (root.left === null && root.right === null)) {
-            hasPath = true;
-        }
-        
-        if(root.left && !hasPath) dfs(root.left, sum);
-        if(root.right && !hasPath) dfs(root.right, sum);
+        return dfs(root.left, sum) || dfs(root.right, sum);
     }
     
-    dfs(root, 0);
-    return hasPath;
-
+    return dfs(root, 0);
 };
