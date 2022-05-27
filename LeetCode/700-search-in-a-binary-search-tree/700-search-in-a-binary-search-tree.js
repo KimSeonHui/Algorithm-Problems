@@ -11,6 +11,7 @@
  * @param {number} val
  * @return {TreeNode}
  */
+//recursion
 var searchBST = function(root, val) {
     if(root === null) return null;
     if(root.val === val) return root;
@@ -18,3 +19,11 @@ var searchBST = function(root, val) {
     if(val < root.val) return searchBST(root.left, val);
     if(root.val < val) return searchBST(root.right, val);
 };
+
+// 다른 사람 풀이 - iterative
+var searchBST = function(root, val) {
+    while(root !== null && root.val !== val){
+        root = val < root.val ? root.left : root.right;
+    }
+    return root;
+}
