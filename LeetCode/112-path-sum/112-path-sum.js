@@ -28,3 +28,21 @@ var hasPathSum = function(root, targetSum) {
     
     return dfs(root, 0);
 };
+
+// 다른 사람 풀이
+var hasPathSum = function(root, targetSum) {
+    return dfs(root, targetSum);
+    // T.C: O(N)
+    // S.C: O(H)
+};
+
+const dfs = (root, target) => {
+    if (!root) {
+        return false;
+    }
+    if (!root.left && !root.right) {
+        return target - root.val === 0;
+    }
+    return dfs(root.left, target - root.val) || 
+        dfs(root.right, target - root.val);
+}
