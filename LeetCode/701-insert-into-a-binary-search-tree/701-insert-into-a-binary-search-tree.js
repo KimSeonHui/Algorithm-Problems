@@ -25,3 +25,33 @@ var insertIntoBST = function(root, val) {
         
     return root;
 };
+
+//다른 사람 풀이 - iterative
+const insertIntoBST = (root, val) => {
+  const Node = new TreeNode(val);
+  let current = root;
+
+  if (!root) return Node;
+
+  while (current) {
+    if (val < current.val) {
+      if (!current.left) {
+        current.left = Node;
+        return root;
+      }
+      current = current.left;
+	  
+
+    } 
+    else if (current.val < val) {
+      if (!current.right) {
+        current.right = Node;
+        return root;
+      }
+
+      current = current.right;
+    }
+  }
+
+  return root;
+};
