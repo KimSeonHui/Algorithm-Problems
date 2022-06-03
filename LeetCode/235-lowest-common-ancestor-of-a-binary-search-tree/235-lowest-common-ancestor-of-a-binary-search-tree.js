@@ -12,6 +12,7 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
+// dfs - recursion
 var lowestCommonAncestor = function(root, p, q) {
     if(!root) return root;
     
@@ -23,3 +24,14 @@ var lowestCommonAncestor = function(root, p, q) {
     
     return lca;
 };
+
+//다른 사람 풀이 - iterative
+var lowestCommonAncestor = function(root, p, q) {
+    while(true){
+        if(p.val < root.val && q.val < root.val) root = root.left;
+
+        else if(p.val > root.val && q.val > root.val) root = root.right;
+
+        else return root;
+    }
+}
