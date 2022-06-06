@@ -2,6 +2,7 @@
  * @param {number[][]} mat
  * @return {number[][]}
  */
+// bfs
 var updateMatrix = function(mat) {
     const queue = [];
     const dis = new Array(mat.length).fill().map(() => Array(mat[0].length));
