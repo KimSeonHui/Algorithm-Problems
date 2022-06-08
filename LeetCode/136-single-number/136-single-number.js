@@ -15,3 +15,8 @@ var singleNumber = function(nums) {
    
     return result[0][0];
 };
+
+// 다른 사람 풀이 - bit manipulation
+var singleNumber = function(nums) {
+    return nums.reduce((acc,val) => acc ^ val, 0);
+};
