@@ -7,8 +7,7 @@ var majorityElement = function(nums) {
     
     for(let num of nums) {
         hash[num] = (hash[num] | 0) + 1;
+        
+        if(hash[num] > Math.floor(nums.length / 2)) return num;
     }
-    
-    const result = Object.entries(hash).find((ele) => ele[1] > Math.floor(nums.length/2));    
-    return result[0];
 };
