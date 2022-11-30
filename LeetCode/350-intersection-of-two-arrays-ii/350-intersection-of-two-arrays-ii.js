@@ -6,16 +6,28 @@
 var intersect = function(nums1, nums2) {
     const hash = {};
     const answer = [];
+    let short = null;
+    let long = null;
     
-    for(let i = 0; i < nums1.length; i++) {
-         hash[nums1[i]] = hash[nums1[i]] + 1 || 1;
+    if(nums1.length <= nums2.length) {
+        short = nums1;
+        long = nums2;
+    }
+    else {
+        short = nums2;
+        long = nums1;
+    }
+    
+    
+    for(let i = 0; i < short.length; i++) {
+         hash[short[i]] = (hash[short[i]] || 0) + 1;
     }
     
 
-    for(let i = 0; i < nums2.length; i++) {
-        if(hash[nums2[i]] !== undefined && hash[nums2[i]] > 0) {
-            answer.push(nums2[i]);
-            hash[nums2[i]]--;
+    for(let i = 0; i < long.length; i++) {
+        if(hash[long[i]] !== undefined && hash[long[i]] > 0) {
+            answer.push(long[i]);
+            hash[long[i]]--;
         }
     }
     return answer;
