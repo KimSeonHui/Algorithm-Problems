@@ -6,6 +6,7 @@
  */
 var matrixReshape = function(mat, r, c) {
     if(r*c !== mat.length * mat[0].length) return mat;
+    if(mat.length === r && mat[0].length === c) return mat;
     
     const reshape = new Array(r);
     for(let i = 0; i < r; i++) {
