@@ -4,29 +4,28 @@
  */
 var generate = function(numRows) {
     const arr = [];
-    const pascal = new Array(numRows);
-    
-    for(let i = 1; i <= numRows; i++) {
-        pascal[i-1] = new Array(i);
-    }
-    
+    const pascal = [];
+    let index = 0;
    
-    for(let i = 0; i < numRows; i++) {
-        for(let j = 0; j < pascal[i].length; j++) {
-            if(j == 0 || j == pascal[i].length -1) {
+    for(let i = 1; i <= numRows; i++) {
+        const row = [];
+        for(let j = 0; j < i; j++) {
+            if(j == 0 || j == i -1) {
                 arr.push(1);
-                pascal[i][j] = 1;  
+                row.push(1);  
             }
             else {
-                pascal[i][j] = calculatePascal(i+1, arr);
-                arr.push(pascal[i][j]);
+                arr.push(calculatePascal(index-i, index-i+1, arr));
+                row.push(arr[index]);
             }
+            index++;
         }
+        pascal.push(row);
     }
     
     return pascal;
 };
 
-function calculatePascal(row, arr) { 
-    return arr[arr.length-(row-1)] + arr[arr.length-row];
+function calculatePascal(left, right, arr) { 
+    return arr[left] + arr[right];
 }
