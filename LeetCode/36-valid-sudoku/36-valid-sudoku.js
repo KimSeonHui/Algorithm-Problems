@@ -5,34 +5,30 @@
 var isValidSudoku = function(board) {
     const size = 9;
     
-    const box = {};
+    const hash = {};
     for(let i = 0; i < size; i++) {
-        const row = {};
-        const col = {};
         for(let j = 0; j < size; j++) {
-            //check column
             if(board[i][j] !== '.') {
-                if(col[board[i][j]] !== undefined) return false;
-                col[board[i][j]] = 1;
-                
-                if(box[[Math.floor(i/3), Math.floor(j/3)]] !== undefined) {
-                    if(box[[Math.floor(i/3), Math.floor(j/3)]].includes(board[i][j])) {
-                        console.log(box);
-                        return false;
-                    }
-                    else box[[Math.floor(i/3), Math.floor(j/3)]].push(board[i][j]);
+                const boxNum = calculateBox(i, j);
+                if(hash[board[i][j]] === undefined) {
+                    hash[board[i][j]] = [[i, j, boxNum]];
                 }
                 else {
-                    box[[Math.floor(i/3), Math.floor(j/3)]] = [board[i][j]];
+                    for(let k = 0; k < hash[board[i][j]].length; k++) {
+                        const [row, col, box] = hash[board[i][j]][k];
+                        if(row === i || col === j) return false;
+                        else if(box === boxNum) return false;
+                    }
+                    hash[board[i][j]].push([i, j, boxNum]);
                 }
             }
-            //check row
-            if(board[j][i] !== '.') {
-                if(row[board[j][i]] !== undefined) return false;
-                row[board[j][i]] = 1;
-            }         
         }
     }
     
     return true;
+    
 };
+
+function calculateBox(row, col) {
+    return Math.floor(row/3) * 3 + Math.floor(col/3);
+}
