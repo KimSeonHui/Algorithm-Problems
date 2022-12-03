@@ -3,21 +3,13 @@
  * @param {string} magazine
  * @return {boolean}
  */
-var canConstruct = function(ransomNote, magazine) {
-    const magazineWords = {};
-    
-    for(let ch of magazine) {
-        magazineWords[ch] = (magazineWords[ch] || 0) + 1;
-    }
-    
-    for(let i = 0; i < ransomNote.length; i++) {
-        if(magazineWords[ransomNote[i]] === undefined) return false;
-        if(magazineWords[ransomNote[i]] > 0) {
-            magazineWords[ransomNote[i]]--;
+var canConstruct = function(ransomNote, magazine) {    
+    for(let note of ransomNote) {
+        const index = magazine.indexOf(note);
+        if(index !== -1) {
+            magazine = magazine.slice(0, index) + magazine.slice(index+1);  
         }
-        else {
-            return false;
-        }
+        else return false;
     }
     
     return true;
