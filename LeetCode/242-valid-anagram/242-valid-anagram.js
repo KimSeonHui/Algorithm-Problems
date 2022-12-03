@@ -6,12 +6,17 @@
 var isAnagram = function(s, t) {
     if(s.length !== t.length) return false;
     
-    for(let ch of s) {
-        const index = t.indexOf(ch);
-        if(index !== -1) {
-            t = t.slice(0, index) + t.slice(index+1);
-        }
-        else return false;
+    const arr1 = [];
+    const arr2 = [];
+    
+    for(let i = 0; i < s.length; i++) {
+        arr1.push(s[i]);
+        arr2.push(t[i]);
     }
-    return true;
+    
+    arr1.sort();
+    arr2.sort();
+    
+    if(arr1.toString() === arr2.toString()) return true;
+    else return false;
 };
