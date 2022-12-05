@@ -9,34 +9,23 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-//recursion
 var reverseList = function(head) {
-    return reverse(null, head);
+    if(head === null) return null;
+    
+    let curNode = head;
+    let nextNode = head.next;
+    let prevNode = null;
+    
+    while(curNode.next !== null) {
+        curNode.next = prevNode;
+        prevNode = curNode;
+        curNode = nextNode;
+        nextNode = nextNode.next;
+    }
+    
+    curNode.next = prevNode;
+    prevNode = curNode;
+    
+    return prevNode;
 };
-
-function reverse(prevNode, node) {
-    if(node === null) return prevNode;
-    
-    let nextNode = node.next;
-    node.next = prevNode;
-    return reverse(node, nextNode);
-}
-
-
-//iterative
-// var reverseList = function(head) {
-//     let prevNode = null;
-//     let currentNode = head;
-//     let nextNode = head;
-    
-//     while(currentNode !== null) {
-//         nextNode = currentNode.next;
-//         currentNode.next = prevNode;
-//         prevNode = currentNode;
-//         currentNode = nextNode;
-//     }
-    
-//     return prevNode;
-// };
-
 
