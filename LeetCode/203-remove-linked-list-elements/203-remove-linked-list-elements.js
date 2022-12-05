@@ -16,17 +16,10 @@ var removeElements = function(head, val) {
     let prevNode = prevHead;
     
     while(curNode !== null) {
-        if(curNode.val === val) {
-            prevNode.next = curNode.next;
-            curNode.next = null;
-                 
-            curNode = prevNode.next;
-        }
-        else {
-            prevNode = curNode;
-            curNode = curNode.next;
-        }
-
+        if(curNode.val === val)  prevNode.next = curNode.next;
+        else  prevNode = curNode;
+        
+        curNode = curNode.next;
     }
     
     return prevHead.next;
