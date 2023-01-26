@@ -1,9 +1,7 @@
 package backjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class B14891 {
 	static int[][] gear = new int[4][8];
@@ -50,8 +48,7 @@ public class B14891 {
 		for(int i=gearNum; i>0; i--) {
 			if(gear[i][6] != gear[i-1][2]) {
 				// 내 회전 방향과 반대로 회전
-				if(d[i] == 1) d[i-1] = -1;
-				else d[i-1] = 1;
+				d[i-1] = -d[i];
 			}
 			else break;
 		}
@@ -60,8 +57,7 @@ public class B14891 {
 		for(int i=gearNum; i<3; i++) {
 			if(gear[i][2] != gear[i+1][6]) {
 				// 내 회전 방향과 반대로 회전
-				if(d[i] == 1) d[i+1] = -1;
-				else d[i+1] = 1;
+				d[i+1] = -d[i];
 			}
 			else break;
 		} 
