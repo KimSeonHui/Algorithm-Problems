@@ -7,24 +7,23 @@ public class B1547 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
 		
 		int M = Integer.parseInt(br.readLine());
-		boolean[] cups = {false, true, false, false};
+		List<Integer> cups = Arrays.asList(1,2,3);
 		
-		for(int i = 1; i <= M; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		for(int i = 0; i < M; i++) {
+			st = new StringTokenizer(br.readLine());
 			
 			int X = Integer.parseInt(st.nextToken());
 			int Y = Integer.parseInt(st.nextToken());
+			int idxX = cups.indexOf(X);
+			int idxY = cups.indexOf(Y);
 			
-			boolean temp = cups[X];
-			cups[X] = cups[Y];
-			cups[Y] = temp;
-			
+			cups.set(idxX, Y);
+			cups.set(idxY, X);
 		}
-		for(int i =1; i <=3; i++) {
-			if(cups[i]) System.out.println(i);
-		}
+		System.out.println(cups.get(0));
 	}
 
 }
