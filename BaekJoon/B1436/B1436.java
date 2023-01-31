@@ -11,14 +11,28 @@ public class B1436 {
 		int cnt = 0;
 		
 		while(true) {
-			String num = Integer.toString(start);
-			if(num.contains("666")) {
-				cnt++;
-				if(cnt == N) break;
-			}
+			if(isSeries(start)) cnt++;
+			if(cnt == N) break;
+			
 			start++;
 		}
 		System.out.println(start);
+	}
+	
+	public static boolean isSeries(int num) {
+		int count = 0;
+		
+		while(num > 0 && count < 3) {
+			if(num % 10 == 6) {
+				count++;
+			}
+			else {
+				count=0;
+			}
+			num = num/10;
+		}
+		
+		return count == 3;
 	}
 
 }
