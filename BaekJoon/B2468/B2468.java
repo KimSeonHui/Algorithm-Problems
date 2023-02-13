@@ -34,7 +34,7 @@ public class B2468 {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					if (cheese[i][j] > day && !v[i][j]) {
-						dfs(i, j, day);
+						bfs(i, j, day);
 						cheeseCnt++;
 					}
 				}
@@ -46,16 +46,22 @@ public class B2468 {
 		System.out.println(sb.toString());
 	}
 
-	static void dfs(int i, int j, int day) {
+	static void bfs(int i, int j, int day) {
+		ArrayDeque<int[]> q = new ArrayDeque<>();
 		v[i][j] = true;
+		q.offer(new int[] { i, j });
 
-		for (int d = 0; d < 4; d++) {
-			int ni = i + dr[d];
-			int nj = j + dc[d];
+		while (q.size() > 0) {
+			int[] pos = q.poll();
 
-			if (0 <= ni && ni < N && 0 <= nj && nj < N && !v[ni][nj] && cheese[ni][nj] > day) {
-				v[ni][nj] = true;
-				dfs(ni, nj, day);
+			for (int d = 0; d < 4; d++) {
+				int ni = pos[0] + dr[d];
+				int nj = pos[1] + dc[d];
+
+				if (0 <= ni && ni < N && 0 <= nj && nj < N && !v[ni][nj] && cheese[ni][nj] > day) {
+					v[ni][nj] = true;
+					q.offer(new int[] { ni, nj });
+				}
 			}
 		}
 	}
