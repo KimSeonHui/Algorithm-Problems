@@ -29,6 +29,7 @@ public class SW1277 {
              
             sb.append("#").append(tc).append(" ");
             dfs(1,1);
+            //bfs(1,1);
             sb.append(ans).append("\n");
         }
         System.out.println(sb.toString());
@@ -47,6 +48,32 @@ public class SW1277 {
              
             if(0<=ni&&ni<100 && 0<=nj&&nj<100 && !v[ni][nj] && (maze[ni][nj]==0||maze[ni][nj]==3)) {
                 dfs(ni,nj);
+            }
+        }
+    }
+    
+    static void bfs(int i, int j) {
+        Queue<int[]> q = new ArrayDeque<>();
+        v[i][j] = true;
+        q.offer(new int[] {i,j});
+         
+        while(!q.isEmpty()) {
+            int[] pos = q.poll();
+             
+            for(int d=0; d<4; d++) {
+                int ni = pos[0] + dr[d];
+                int nj = pos[1] + dc[d];
+                 
+                if(0<=ni&&ni<100 && 0<=nj&&nj<100 && !v[ni][nj] && (maze[ni][nj]==0||maze[ni][nj]==3)) {
+                    if(maze[ni][nj]==0) {
+                        v[ni][nj] = true;
+                        q.offer(new int[] {ni, nj});
+                    }
+                    else if(maze[ni][nj]==3) {
+                        ans = 1;
+                        return;
+                    }
+                }
             }
         }
     }
