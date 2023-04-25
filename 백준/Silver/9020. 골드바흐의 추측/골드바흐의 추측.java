@@ -21,21 +21,14 @@ public class Main {
 		for(int t=0; t<T; t++) {
 			int num = Integer.parseInt(br.readLine());
 			
-			int min = Integer.MAX_VALUE; // 골드바흐 파티션을 이루는 두 소수 차이의 최솟값
-			int prime = 0;
-			for(int i=2; i<=num; i++) {
-				if(isPrime[i]) { // i가 소수이면
-					
-					if(isPrime[num-i]) { // num-i 가 소수인지 확인
-						// 현재 골드바흐 파티션의 두 소수 차이가 최소이면
-						if(Math.abs(i-(num-i)) < min) { 
-							min = Math.abs(i-(num-i));
-							prime = i;
-						}
-					}
+			int mid = num/2;
+			while(true) {
+				if(isPrime[mid] && isPrime[num-mid]) {
+					sb.append(mid).append(" ").append(num-mid).append("\n");
+					break;
 				}
-			}
-			sb.append(prime).append(" ").append(num-prime).append("\n");
+				mid--;
+			}			
 		}
 		System.out.println(sb);
 		br.close();
