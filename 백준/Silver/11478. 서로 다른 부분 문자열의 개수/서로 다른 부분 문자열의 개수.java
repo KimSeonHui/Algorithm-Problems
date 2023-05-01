@@ -8,19 +8,12 @@ public class Main {
 		String S = br.readLine();
 		
 		Set<String> set = new HashSet();
-		int start = 0;
-		while(start < S.length()) {
-			int end = start;
-			String str = "";
-			while(end < S.length()) {
-				str += S.charAt(end);
-				set.add(str);
-				end++;
+		for(int i=0; i<S.length(); i++) {
+			for(int j=i+1; j<=S.length(); j++) {
+				set.add(S.substring(i, j));
 			}
-			start++;
 		}
 		System.out.println(set.size());
 		br.close();
 	}
-
 }
