@@ -45,10 +45,7 @@ public class Main {
 			if(i==0) perm(cnt+1, res+nums[cnt+1]); // 덧셈
 			else if(i==1) perm(cnt+1, res-nums[cnt+1]); // 뺄셈
 			else if(i==2) perm(cnt+1, res*nums[cnt+1]); // 곱셈
-			else { // 나눗셈
-				if(res < 0) perm(cnt+1, -(Math.abs(res)/nums[cnt+1]));
-				else perm(cnt+1, res/nums[cnt+1]);
-			}
+			else perm(cnt+1, res/nums[cnt+1]); // 나눗셈
 			opers[i]++; // 선택 복구
 		}
 	}
