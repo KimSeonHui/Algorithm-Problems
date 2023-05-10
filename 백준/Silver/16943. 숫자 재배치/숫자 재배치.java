@@ -10,6 +10,8 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		
 		a = st.nextToken().toCharArray();
+		Arrays.sort(a);
+		a = new StringBuilder(new String(a)).reverse().toString().toCharArray();
 		b = st.nextToken().toCharArray();
 		
 		max = -1;
@@ -28,6 +30,7 @@ public class Main {
 			
 			if(numA < numB) {
 				max = Math.max(max, numA);
+				return;
 			}
 			return;
 		}
