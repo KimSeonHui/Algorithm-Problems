@@ -5,11 +5,10 @@ class Solution {
     public int[] solution(int brown, int yellow) {
         int[] answer = {};
         
-        int y = 1;
-        while(y <= yellow) {
-            if(yellow % y == 0) {
-                int yellowH = Math.min(y, yellow / y);    
-                int yellowW = Math.max(y, yellow / y);    
+        int yellowH = 1;
+        while(true) {
+            if(yellow % yellowH == 0) {
+                int yellowW = yellow / yellowH;    
                 //System.out.println(yellowW);
 
                 int width = yellowW + 2;
@@ -20,7 +19,7 @@ class Solution {
                     break;
                 }
             }
-            y++;
+            yellowH++;
         }
         return answer;
     }
