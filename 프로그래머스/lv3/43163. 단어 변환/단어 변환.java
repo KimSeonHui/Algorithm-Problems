@@ -27,6 +27,7 @@ class Solution {
     }
     
     public int bfs(String begin, String target, String[] words) {
+        boolean[] v = new boolean[words.length];
         ArrayDeque<Word> q = new ArrayDeque<>();
         q.offer(new Word(begin, 0));
         
@@ -43,7 +44,8 @@ class Solution {
                     if(cur.word.charAt(j) == str.charAt(j)) cnt++;
                 }
                 
-                if(begin.length() - cnt == 1) {
+                if(!v[i] && begin.length() - cnt == 1) {
+                    v[i] = true;
                     q.offer(new Word(str, cur.depth+1));
                 }
             }
