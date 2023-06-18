@@ -4,19 +4,15 @@ import java.util.*;
 class Solution {
     public String solution(String[] survey, int[] choices) {
         
-        char[][] type = new char[4][2]; // 지표 변호 별 성격 유형 저장
-        type[0] = new char[]{'R', 'T'};
-        type[1] = new char[]{'C', 'F'};
-        type[2] = new char[]{'J', 'M'};
-        type[3] = new char[]{'A', 'N'};
         
-        
+        char[][] type = {{'R', 'T'}, {'C', 'F'}, {'J', 'M'}, {'A', 'N'}}; // 지표 변호 별 성격 유형 저장 :: 각 지표 별로 알파벳 순서로 저장  
         Map<Character, Integer> score = new HashMap<>(); // 성격 유형 : 설문조사 점수 저장 map
         for(int i=0; i<type.length; i++) {
             char[] t = type[i];
             score.put(t[0], 0);
             score.put(t[1], 0);
         }
+
         
         // 설문조사 점수 계산
         calScore(score, survey, choices);
@@ -30,18 +26,14 @@ class Solution {
     }
     
     public void calScore(Map<Character, Integer> score, String[] survey, int[] choices) {
+        int[] scores = {0, 3, 2, 1, 0, 1, 2, 3};
+        
         for(int i=0; i<survey.length; i++) {
             char notAgree = survey[i].charAt(0);
             char agree = survey[i].charAt(1);
             
-            int choice = choices[i];
-            char getType = notAgree;
-            if(choice == 1 || choice == 2 || choice == 3) getType = notAgree;
-            else getType = agree;
-            
-            if(choice == 1 || choice == 7) score.put(getType, score.get(getType) + 3); // 매우
-            else if(choice == 2 || choice == 6) score.put(getType, score.get(getType) + 2); 
-            else if(choice == 3 || choice == 5) score.put(getType, score.get(getType) + 1); // 약간
+            if(choices[i] < 4) score.put(notAgree, score.get(notAgree) + scores[choices[i]]);
+            else score.put(agree, score.get(agree) + scores[choices[i]]);
         }
     }
     
@@ -49,12 +41,7 @@ class Solution {
         String result = "";
         for(int i=0; i<type.length; i++) {
             char[] t = type[i];
-            char type1 = t[0];
-            char type2 = t[1];
-            
-            if(score.get(type1) > score.get(type2)) result += type1;
-            else if(score.get(type1) < score.get(type2)) result += type2;
-            else result += (type1 <= type2 ? type1 : type2);
+            result += (score.get(t[1]) <= score.get(t[0]) ? t[0] : t[1]); // 걊이 같으면 알파벳 순서가 빠른 t[0]이 저장될 수 있도록
         }
         
         return result;
