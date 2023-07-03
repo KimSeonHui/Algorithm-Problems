@@ -4,7 +4,7 @@ import java.util.*;
 class Solution {
     public int solution(int n, int k) {
         // 1. n을 k 진수로 변환
-        String changedNum = changeNum(n, k);
+        String changedNum = Integer.toString(n, k);
 
         // 2. 조건에 맞는 소수 찾기
         StringTokenizer st = new StringTokenizer(changedNum, "0");
@@ -16,17 +16,6 @@ class Solution {
         }
         
         return answer;
-    }
-    
-    public String changeNum(int n, int k) {
-        if(k == 10) return Integer.toString(n);
-        
-        StringBuilder sb = new StringBuilder();
-        while(n > 0) {
-            sb.insert(0, n % k);
-            n = n / k;
-        }
-        return sb.toString();
     }
     
     // 소수 확인
