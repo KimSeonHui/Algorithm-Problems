@@ -3,12 +3,9 @@ function solution(s) {
     
     split[0] = split[0].toUpperCase();
     let isWhiteSpace = false;
-    const answer = [];
-    for(let str of split) {
-        str = isWhiteSpace ? str.toUpperCase() : str;
-        isWhiteSpace = str == ' ' ? true : false;
-        answer.push(str);
+    for(let i=1; i<split.length; i++) {
+        split[i] = isWhiteSpace ? split[i].toUpperCase() : split[i];
+        isWhiteSpace = split[i] == ' ' ? true : false;
     }
-    
-    return answer.join('');
+    return split.join('');
 }
