@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public String solution(int n, int t, int m, int p) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<=t*m; i++) {
+            sb.append(Integer.toString(i,n));
+        }
+        String nums = sb.toString();
+        
+        StringBuilder answer = new StringBuilder();
+        for(int i=0; i<nums.length(); i++) {
+            if(i%m == (p-1)) {
+                char ch = nums.charAt(i);
+                if('a' <= ch && ch <= 'f') answer.append(String.valueOf(ch).toUpperCase()); 
+                else answer.append(String.valueOf(ch));
+            }
+            if(answer.length() == t) break;
+        }
+        
+        return answer.toString();
+    }
+}
