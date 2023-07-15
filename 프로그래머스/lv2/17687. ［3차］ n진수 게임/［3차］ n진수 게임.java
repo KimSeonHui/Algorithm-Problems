@@ -11,14 +11,10 @@ class Solution {
         
         StringBuilder answer = new StringBuilder();
         for(int i=0; i<nums.length(); i++) {
-            if(i%m == (p-1)) {
-                char ch = nums.charAt(i);
-                if('a' <= ch && ch <= 'f') answer.append(String.valueOf(ch).toUpperCase()); 
-                else answer.append(String.valueOf(ch));
-            }
+            if(i%m == (p-1)) answer.append(String.valueOf(nums.charAt(i)));
             if(answer.length() == t) break;
         }
         
-        return answer.toString();
+        return answer.toString().toUpperCase();
     }
 }
