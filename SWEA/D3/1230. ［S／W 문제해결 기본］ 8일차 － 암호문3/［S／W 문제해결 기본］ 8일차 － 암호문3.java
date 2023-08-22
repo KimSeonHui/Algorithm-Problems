@@ -9,7 +9,7 @@ public class Solution {
         for(int t=1; t<=10; t++) {
             int N = Integer.parseInt(br.readLine());
 
-            LinkedList<Integer> list = new LinkedList<>();
+            ArrayList<Integer> list = new ArrayList<>();
             // 원본 암호문 코드 입력 받기
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             for(int i=0; i<N; i++) {
@@ -38,7 +38,7 @@ public class Solution {
                 else {
                     int y = Integer.parseInt(st.nextToken());
                     for(int j=0; j<y; j++) {
-                        list.addLast(Integer.parseInt(st.nextToken()));
+                        list.add(Integer.parseInt(st.nextToken()));
                     }
                 }
             }
