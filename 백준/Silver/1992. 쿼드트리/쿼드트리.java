@@ -3,11 +3,15 @@ import java.io.*;
 public class Main {
     static int N;
     static int[][] map;
+    static StringBuilder sb = null;
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
+        sb = new StringBuilder();
 
+        N = Integer.parseInt(br.readLine());
         map = new int[N][N];
+
         for(int r=0; r<N; r++) {
             String str = br.readLine();
             for(int c=0; c<N; c++) {
@@ -16,25 +20,25 @@ public class Main {
         }
 
         sol(N, 0, 0);
+        System.out.println(sb);
     }
 
     public static void sol(int n, int r, int c) {
         if(n == 0) {
-            System.out.print(")");
             return;
         }
 
         if(!check(n , r, c)) {
             int half = n / 2;
 
-            System.out.print("(");
+            sb.append("(");
             sol(half, r, c);
             sol(half, r, c + half);
             sol(half, r + half, c);
             sol(half, r + half , c + half);
-            System.out.print(")");
+            sb.append(")");
         }
-        else System.out.print(map[r][c]);
+        else sb.append(map[r][c]);
 
     }
 
